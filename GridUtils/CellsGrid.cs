@@ -49,6 +49,34 @@ public class CellsGrid : MonoBehaviour {
 		return Cells[coord.x, coord.y];
 	}
 
+	public List<Cell> GetDirectNeighbors(Coord coord){
+		List<Cell> neighbors = new List<Cell>();
+		for (int x = coord.x - 1; x <= coord.x + 1; x++) {
+			for (int y = coord.y - 1; y <= coord.y + 1; y++) {
+				if (x != coord.x && y != coord.y)
+					continue;
+				Coord otherCoord = new Coord (x,y);
+				if(Contains(otherCoord) && !coord.Equals(otherCoord)){
+					neighbors.Add (GetCell(otherCoord));
+				}
+			}
+		}
+		return neighbors;
+	}
+
+	public List<Cell> GetNeighbors(Coord coord){
+		List<Cell> neighbors = new List<Cell>();
+		for (int x = coord.x - 1; x <= coord.x + 1; x++) {
+			for (int y = coord.y - 1; y <= coord.y + 1; y++) {
+				Coord otherCoord = new Coord (x,y);
+				if(Contains(otherCoord) && !coord.Equals(otherCoord)){
+					neighbors.Add (GetCell(otherCoord));
+				}
+			}
+		}
+		return neighbors;
+	}
+
 	public bool Contains(Coord coord){
 		if (coord.x < 0 || coord.y < 0 || coord.x >= map.size.x || coord.y >= map.size.y )
 			return false;
