@@ -21,8 +21,8 @@ public class GridMap2D : GridMap {
 	}
 
 	void OnDrawGizmos() {
-		float GizoBlockWidth = 1.28f;
-		float GizoBlockHeight = 1.28f;
+		float GizoBlockWidth = 1.0f;
+		float GizoBlockHeight = 1.0f;
 		Gizmos.color = Color.yellow;
 		//Top
 		Gizmos.DrawLine (transform.localPosition + new Vector3 (GizoBlockWidth * size.x / 2f, GizoBlockHeight * size.y / 2f, 0),

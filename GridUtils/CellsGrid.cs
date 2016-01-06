@@ -8,8 +8,13 @@ public class CellsGrid : MonoBehaviour {
 
 	public GameObject CellPrefap;
 
+	public event System.Action<Cell> InstantiateCallBack;
+
 	void Awake(){
 		map = GetComponent<GridMap> ();
+	}
+
+	public void PopulateGrid(){
 		map.CreateGrid ();
 
 		Cells = new Cell[map.size.x, map.size.y];
@@ -27,7 +32,10 @@ public class CellsGrid : MonoBehaviour {
 		Cells [x, y] = block.GetComponent<Cell> ();
 		block.transform.parent = transform;
 		block.transform.localPosition = map.Map[x,y];
-		block.GetComponent<Cell>().coord = new Coord (x,y);
+		Cells [x, y].coord = new Coord (x,y);
+
+		if (InstantiateCallBack != null)
+			InstantiateCallBack (Cells [x, y]);
 	}
 
 	public void Clear(){
