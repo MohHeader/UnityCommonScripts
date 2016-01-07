@@ -10,7 +10,7 @@ public class CellsGrid : MonoBehaviour {
 
 	public event System.Action<Cell> InstantiateCallBack;
 
-	void Awake(){
+	public virtual void Awake(){
 		map = GetComponent<GridMap> ();
 	}
 
