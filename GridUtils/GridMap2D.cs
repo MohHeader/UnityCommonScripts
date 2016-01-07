@@ -21,23 +21,18 @@ public class GridMap2D : GridMap {
 	}
 
 	void OnDrawGizmos() {
-		float GizoBlockWidth = BlockWidth;
-		float GizoBlockHeight = BlockHeight;
+		float GizmoBlockWidth = BlockWidth;
+		float GizmoBlockHeight = BlockHeight;
 		Gizmos.color = Color.yellow;
-		//Top
-		Gizmos.DrawLine (transform.localPosition + new Vector3 (GizoBlockWidth * size.x / 2f, GizoBlockHeight * size.y / 2f, 0),
-			transform.localPosition + new Vector3 (-GizoBlockWidth * size.x / 2f, GizoBlockHeight * size.y / 2f, 0));
-		//Bottom
-		Gizmos.DrawLine (transform.localPosition + new Vector3 (GizoBlockWidth * size.x / 2f, -GizoBlockHeight * size.y / 2f, 0),
-			transform.localPosition + new Vector3 (-GizoBlockWidth * size.x / 2f, -GizoBlockHeight * size.y / 2f, 0));
+		for (int i = 0; i <= size.x; i++) {
+			Gizmos.DrawLine (transform.localPosition + new Vector3 (-GizmoBlockWidth * size.x / 2f + GizmoBlockWidth * i, -GizmoBlockHeight * size.y / 2f, 0),
+				transform.localPosition + new Vector3 (-GizmoBlockWidth * size.x / 2f + GizmoBlockWidth * i, GizmoBlockHeight * size.y / 2f, 0));
+		}
 
-		//Right
-		Gizmos.DrawLine (transform.localPosition + new Vector3 (GizoBlockWidth * size.x / 2f, -GizoBlockHeight * size.y / 2f, 0),
-			transform.localPosition + new Vector3 (GizoBlockWidth * size.x / 2f,  GizoBlockHeight * size.y / 2f, 0));
-
-		//Left
-		Gizmos.DrawLine (transform.localPosition + new Vector3 (-GizoBlockWidth * size.x / 2f, -GizoBlockHeight * size.y / 2f, 0),
-			transform.localPosition + new Vector3 (-GizoBlockWidth * size.x / 2f, GizoBlockHeight * size.y / 2f, 0));
+		for (int i = 0; i <= size.y; i++) {
+			Gizmos.DrawLine (transform.localPosition + new Vector3 (GizmoBlockWidth * size.x / 2f, -GizmoBlockHeight * size.y / 2f + GizmoBlockWidth * i, 0),
+				transform.localPosition + new Vector3 (-GizmoBlockWidth * size.x / 2f, -GizmoBlockHeight * size.y / 2f + GizmoBlockWidth * i, 0));
+		}
 	}
 
 }
