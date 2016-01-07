@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 [RequireComponent (typeof (GridMap))]
 public class CellsGrid : MonoBehaviour {
-	private GridMap map;
+	protected GridMap map;
 	public Cell[,] Cells;
 
 	public GameObject CellPrefap;
@@ -14,7 +14,7 @@ public class CellsGrid : MonoBehaviour {
 		map = GetComponent<GridMap> ();
 	}
 
-	public void PopulateGrid(){
+	public virtual void PopulateGrid(){
 		map.CreateGrid ();
 
 		Cells = new Cell[map.size.x, map.size.y];
@@ -39,6 +39,9 @@ public class CellsGrid : MonoBehaviour {
 	}
 
 	public void Clear(){
+		if (Cells == null)
+			return;
+
 		foreach (Cell cell in Cells) {
 			if(cell != null)
 				Destroy (cell.gameObject);
