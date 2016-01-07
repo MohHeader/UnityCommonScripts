@@ -36,4 +36,8 @@ public class GridMap3D : GridMap {
 			transform.localPosition + new Vector3 (-GizoBlockWidth * size.x / 2f,0, GizoBlockHeight * size.y / 2f));
 	}
 
+	public override Coord WorldToLocal(Vector3 _worldPosition){
+		return null;
+	}
+
 }

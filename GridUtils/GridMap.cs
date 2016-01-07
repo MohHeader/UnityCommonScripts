@@ -11,6 +11,7 @@ public abstract class GridMap : MonoBehaviour {
 	public Vector3[,] Map;
 
 	public abstract void CreateGrid();
+	public abstract Coord WorldToLocal(Vector3 _worldPosition);
 
 	public Vector3 GetPosition(Coord coord){
 		return Map[coord.x, coord.y];

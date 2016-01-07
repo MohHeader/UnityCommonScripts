@@ -35,4 +35,19 @@ public class GridMap2D : GridMap {
 		}
 	}
 
+	public override Coord WorldToLocal(Vector3 _worldPosition){
+		float GizmoBlockWidth = BlockWidth;
+		float GizmoBlockHeight = BlockHeight;
+		if (_worldPosition.x <  GizmoBlockWidth * size.x / 2f && _worldPosition.x > -GizmoBlockWidth * size.x / 2f &&
+			_worldPosition.y < GizmoBlockHeight * size.y / 2f && _worldPosition.y > -GizmoBlockHeight * size.y / 2f)
+		{
+
+			int x = Mathf.RoundToInt( (_worldPosition.x + (GizmoBlockWidth * size.x / 2f) - (0.5f* GizmoBlockWidth) )/ GizmoBlockWidth);
+			int y = Mathf.RoundToInt( (_worldPosition.y + (GizmoBlockHeight * size.y / 2f) - (0.5f* GizmoBlockHeight) )/ GizmoBlockHeight);
+
+			return new Coord (x, y);
+		}
+		return null;
+	}
+
 }
