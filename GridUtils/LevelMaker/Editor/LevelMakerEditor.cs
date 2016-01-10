@@ -4,6 +4,12 @@ using System.Collections;
 
 namespace GridMaker{
 	public abstract class LevelMakerEditor<T,Z> : Editor where T : Cell where Z : GridMaker.CellData {
+		public enum BrushType
+		{
+			Single,
+			HLine,
+			VLine
+		}
 		protected LevelMaker levelMaker;
 
 		public void OnEnable()
@@ -13,8 +19,12 @@ namespace GridMaker{
 			SceneView.onSceneGUIDelegate += GridUpdate;
 		}
 
+		public BrushType brushType;
+
 		public override void OnInspectorGUI(){
 			DrawDefaultInspector ();
+
+			brushType = (BrushType) EditorGUILayout.EnumPopup ("Brush Type", brushType);
 
 			if(GUILayout.Button("Clear"))
 			{
@@ -57,7 +67,20 @@ namespace GridMaker{
 				if (coord == null)
 					return;
 
-				levelMaker.InstateBlock (coord);
+				switch (brushType) {
+				case BrushType.HLine:
+					levelMaker.InstateBlockLine (coord, true);
+					break;
+				case BrushType.VLine:
+					levelMaker.InstateBlockLine (coord, false);
+					break;
+				case BrushType.Single:
+				default:
+					levelMaker.InstateBlock (coord);
+					break;
+				}
+
+
 			}
 		}
 	}

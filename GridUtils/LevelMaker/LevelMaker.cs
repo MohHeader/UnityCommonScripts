@@ -28,6 +28,18 @@ namespace GridMaker{
 			grid.Cells [coord.x, coord.y] = cell;
 		}
 
+		public void  InstateBlockLine(Coord coord, bool isHorizontal){
+			if (isHorizontal) {
+				for (int x = 0; x < map.size.x; x++) {
+					InstateBlock (new Coord (x, coord.y));
+				}
+			} else {
+				for (int y = 0; y < map.size.y; y++) {
+					InstateBlock (new Coord (coord.x, y));
+				}
+			}
+		}
+
 		public Level<Z> SaveLevel(Level<Z> level){
 			level.data = new Z[map.size.x*map.size.y];
 			level.rows = map.size.y;
