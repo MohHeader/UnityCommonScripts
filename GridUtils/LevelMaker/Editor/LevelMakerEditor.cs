@@ -10,11 +10,11 @@ namespace GridMaker{
 			HLine,
 			VLine
 		}
-		protected LevelMaker levelMaker;
+		protected LevelMaker<T,Z> levelMaker;
 
 		public void OnEnable()
 		{
-			levelMaker = (LevelMaker) target;
+			levelMaker = (LevelMaker<T,Z>) target;
 
 			SceneView.onSceneGUIDelegate += GridUpdate;
 		}
