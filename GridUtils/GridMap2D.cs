@@ -7,8 +7,10 @@ public class GridMap2D : GridMap {
 	// Use this for initialization
 	public override void CreateGrid () {
 		Map = new Vector3[size.x, size.y];
-		BlockWidth = block.bounds.size.x;
-		BlockHeight = block.bounds.size.y;
+		if (block != null) {
+			BlockWidth = block.bounds.size.x;
+			BlockHeight = block.bounds.size.y;
+		}
 		for (int x = 0; x < size.x; x++) {
 			for (int y = 0; y < size.y; y++) {
 				InstantiateCell(x, y);
