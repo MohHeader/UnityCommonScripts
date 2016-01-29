@@ -5,12 +5,11 @@ using System.Collections.Generic;
 
 public class Draggable : MonoBehaviour {
 	public Vector3 OriginalPosition;
-	private Vector3 screenPoint;
 	private Vector3 offset;
 
 	[HideInInspector]
 	public bool IsDraggable;
-	List<DropZone> dropZones;
+	public List<DropZone> dropZones { get; protected set;}
 
 
 	void Awake(){
@@ -18,15 +17,11 @@ public class Draggable : MonoBehaviour {
 		OriginalPosition = transform.position;
 	}
 
-	void Start(){
-		IsDraggable = true;
-	}
-
 	void OnMouseDown()
 	{
 		if (!IsDraggable)
 			return;
-		offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+		offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
 
 		if (onDragStarted != null)
 			onDragStarted (this);
@@ -37,7 +32,7 @@ public class Draggable : MonoBehaviour {
 		if (!IsDraggable)
 			return;
 
-		Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+		Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
 		Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 
 		transform.position = curPosition;
@@ -46,7 +41,7 @@ public class Draggable : MonoBehaviour {
 	void OnMouseUp(){
 		if (!IsDraggable)
 			return;
-		
+
 		if (dropZones.Count > 0 && onDragEnded != null){
 			foreach (DropZone dropZone in dropZones) {
 				if (onDragEnded (this, dropZone)) {

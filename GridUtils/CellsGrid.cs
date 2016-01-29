@@ -49,6 +49,9 @@ public class CellsGrid : MonoBehaviour {
 	}
 
 	public Cell GetCell(Coord coord){
+		if (coord.x < 0 || coord.x >= Cells.GetLength (0) || coord.y < 0 || coord.y >= Cells.GetLength (1))
+			return null;
+
 		return Cells[coord.x, coord.y];
 	}
 
