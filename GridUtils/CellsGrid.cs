@@ -49,12 +49,13 @@ public class CellsGrid : MonoBehaviour {
 	}
 
 	public Cell GetCell(Coord coord){
-		if (coord.x < 0 || coord.x >= Cells.GetLength (0) || coord.y < 0 || coord.y >= Cells.GetLength (1))
+		if (Contains(coord) == false)
 			return null;
 
 		return Cells[coord.x, coord.y];
 	}
 
+	//North, East, South, West
 	public List<Cell> GetDirectNeighbors(Coord coord){
 		List<Cell> neighbors = new List<Cell>();
 		for (int x = coord.x - 1; x <= coord.x + 1; x++) {
@@ -70,6 +71,7 @@ public class CellsGrid : MonoBehaviour {
 		return neighbors;
 	}
 
+	// N, E, S, W, NE, NW, SE, SW
 	public List<Cell> GetNeighbors(Coord coord){
 		List<Cell> neighbors = new List<Cell>();
 		for (int x = coord.x - 1; x <= coord.x + 1; x++) {
