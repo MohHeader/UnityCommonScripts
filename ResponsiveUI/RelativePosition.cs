@@ -62,10 +62,10 @@ public class RelativePosition : MonoBehaviour {
 
 		switch (horizontal) {
 		case Horizontal.Right:
-			x = world.x - (SpriteSize.x*sprite.sprite.pivot.x) - margin - HorizontaltMargin;
+			x = world.x - (sprite.sprite.rect.center.x/sprite.sprite.pixelsPerUnit) - margin - HorizontaltMargin;
 			break;
 		case Horizontal.Left:
-			x = - world.x + (SpriteSize.x*sprite.sprite.pivot.x) + margin + HorizontaltMargin;
+			x = - world.x + (sprite.sprite.rect.center.x/sprite.sprite.pixelsPerUnit) + margin + HorizontaltMargin;
 			break;
 		case Horizontal.Center:
 			x = margin + HorizontaltMargin;
@@ -76,10 +76,10 @@ public class RelativePosition : MonoBehaviour {
 
 		switch (vertical) {
 		case Vertical.Top:
-			y = world.y - (SpriteSize.y*sprite.sprite.pivot.y) - margin - VerticalMargin;
+			y = world.y - (sprite.sprite.rect.center.y/sprite.sprite.pixelsPerUnit) - margin - VerticalMargin;
 			break;
 		case Vertical.Bottom:
-			y = - world.y + (SpriteSize.y*sprite.sprite.pivot.y) + margin + VerticalMargin;
+			y = - world.y + (sprite.sprite.rect.center.y/sprite.sprite.pixelsPerUnit) + margin + VerticalMargin;
 			break;
 		case Vertical.Center:
 			y = margin + VerticalMargin;
@@ -112,10 +112,10 @@ public class RelativePosition : MonoBehaviour {
 
 		switch (horizontal) {
 		case Horizontal.Right:
-			HorizontaltMargin = world.x - (SpriteSize.x*sprite.sprite.pivot.x) - x;
+			HorizontaltMargin = world.x - (sprite.sprite.rect.center.x/sprite.sprite.pixelsPerUnit) - x;
 			break;
 		case Horizontal.Left:
-			HorizontaltMargin = world.x - (SpriteSize.x*sprite.sprite.pivot.x) + x;
+			HorizontaltMargin = world.x - (sprite.sprite.rect.center.x/sprite.sprite.pixelsPerUnit) + x;
 			break;
 		case Horizontal.Center:
 			HorizontaltMargin = x;
@@ -126,10 +126,10 @@ public class RelativePosition : MonoBehaviour {
 
 		switch (vertical) {
 		case Vertical.Top:
-			VerticalMargin = world.y - (SpriteSize.y*sprite.sprite.pivot.y) - y;
+			VerticalMargin = world.y - (sprite.sprite.rect.center.y/sprite.sprite.pixelsPerUnit) - y;
 			break;
 		case Vertical.Bottom:
-			VerticalMargin = world.y - (SpriteSize.y*sprite.sprite.pivot.y) + y;
+			VerticalMargin = world.y - (sprite.sprite.rect.center.y/sprite.sprite.pixelsPerUnit) + y;
 			break;
 		case Vertical.Center:
 			VerticalMargin = y ;
