@@ -5,6 +5,8 @@ public class ToggleGroup : MonoBehaviour {
 	private Toggle[] toggles;
 	private Toggle Current;
 
+	public event System.Action<Toggle> ToggleEvent;
+
 	void Awake () {
 		toggles = GetComponentsInChildren<Toggle> ();
 	}
@@ -17,6 +19,9 @@ public class ToggleGroup : MonoBehaviour {
 		}
 
 		Current.SetToggle (true);
+
+		if(ToggleEvent != null)
+			ToggleEvent(toggle);
 	}
 
 	public string GetCurrentToggleData(){
