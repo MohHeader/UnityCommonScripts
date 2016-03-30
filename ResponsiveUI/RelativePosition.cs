@@ -49,8 +49,8 @@ public class RelativePosition : MonoBehaviour {
 
 		SpriteRenderer sprite = GetComponent<SpriteRenderer>();
 		if (sprite != null) {
-			SpriteSize.x = sprite.bounds.size.x / transform.localScale.x;
-			SpriteSize.y = sprite.bounds.size.y / transform.localScale.y;
+			SpriteSize.x = sprite.sprite.rect.center.x/sprite.sprite.pixelsPerUnit;
+			SpriteSize.y = sprite.sprite.rect.center.y/sprite.sprite.pixelsPerUnit;
 		}
 
 		Vector3 world = Camera.main.ScreenToWorldPoint(new Vector3 (Camera.main.pixelWidth
@@ -62,10 +62,10 @@ public class RelativePosition : MonoBehaviour {
 
 		switch (horizontal) {
 		case Horizontal.Right:
-			x = world.x - (sprite.sprite.rect.center.x/sprite.sprite.pixelsPerUnit) - margin - HorizontaltMargin;
+			x = world.x - SpriteSize.x - margin - HorizontaltMargin;
 			break;
 		case Horizontal.Left:
-			x = - world.x + (sprite.sprite.rect.center.x/sprite.sprite.pixelsPerUnit) + margin + HorizontaltMargin;
+			x = - world.x + SpriteSize.x + margin + HorizontaltMargin;
 			break;
 		case Horizontal.Center:
 			x = margin + HorizontaltMargin;
@@ -76,10 +76,10 @@ public class RelativePosition : MonoBehaviour {
 
 		switch (vertical) {
 		case Vertical.Top:
-			y = world.y - (sprite.sprite.rect.center.y/sprite.sprite.pixelsPerUnit) - margin - VerticalMargin;
+			y = world.y - SpriteSize.y - margin - VerticalMargin;
 			break;
 		case Vertical.Bottom:
-			y = - world.y + (sprite.sprite.rect.center.y/sprite.sprite.pixelsPerUnit) + margin + VerticalMargin;
+			y = - world.y + SpriteSize.y + margin + VerticalMargin;
 			break;
 		case Vertical.Center:
 			y = margin + VerticalMargin;
@@ -99,7 +99,7 @@ public class RelativePosition : MonoBehaviour {
 
 		SpriteRenderer sprite = GetComponent<SpriteRenderer>();
 		if (sprite != null) {
-			SpriteSize.x = sprite.bounds.size.x / transform.localScale.x;
+			SpriteSize.x = sprite.sprite.rect.center.x/sprite.sprite.pixelsPerUnit;
 			SpriteSize.y = sprite.bounds.size.y / transform.localScale.y;
 		}
 
@@ -112,10 +112,10 @@ public class RelativePosition : MonoBehaviour {
 
 		switch (horizontal) {
 		case Horizontal.Right:
-			HorizontaltMargin = world.x - (sprite.sprite.rect.center.x/sprite.sprite.pixelsPerUnit) - x;
+			HorizontaltMargin = world.x - SpriteSize.x - x;
 			break;
 		case Horizontal.Left:
-			HorizontaltMargin = world.x - (sprite.sprite.rect.center.x/sprite.sprite.pixelsPerUnit) + x;
+			HorizontaltMargin = world.x - SpriteSize.x + x;
 			break;
 		case Horizontal.Center:
 			HorizontaltMargin = x;
@@ -126,10 +126,10 @@ public class RelativePosition : MonoBehaviour {
 
 		switch (vertical) {
 		case Vertical.Top:
-			VerticalMargin = world.y - (sprite.sprite.rect.center.y/sprite.sprite.pixelsPerUnit) - y;
+			VerticalMargin = world.y - SpriteSize.y - y;
 			break;
 		case Vertical.Bottom:
-			VerticalMargin = world.y - (sprite.sprite.rect.center.y/sprite.sprite.pixelsPerUnit) + y;
+			VerticalMargin = world.y - SpriteSize.y + y;
 			break;
 		case Vertical.Center:
 			VerticalMargin = y ;
