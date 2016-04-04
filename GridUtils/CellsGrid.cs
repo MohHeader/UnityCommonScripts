@@ -12,6 +12,8 @@ public class CellsGrid : MonoBehaviour {
 
 	public virtual void Awake(){
 		map = GetComponent<GridMap> ();
+
+		PopulateGrid ();
 	}
 
 	public virtual void PopulateGrid(){
@@ -49,7 +51,7 @@ public class CellsGrid : MonoBehaviour {
 	}
 
 	public Cell GetCell(Coord coord){
-		if (Contains(coord) == false)
+		if (map.Contains(coord) == false)
 			return null;
 
 		return Cells[coord.x, coord.y];
@@ -63,7 +65,7 @@ public class CellsGrid : MonoBehaviour {
 				if (x != coord.x && y != coord.y)
 					continue;
 				Coord otherCoord = new Coord (x,y);
-				if(Contains(otherCoord) && !coord.Equals(otherCoord)){
+				if(map.Contains(otherCoord) && !coord.Equals(otherCoord)){
 					neighbors.Add (GetCell(otherCoord));
 				}
 			}
@@ -77,7 +79,7 @@ public class CellsGrid : MonoBehaviour {
 		for (int x = coord.x - 1; x <= coord.x + 1; x++) {
 			for (int y = coord.y - 1; y <= coord.y + 1; y++) {
 				Coord otherCoord = new Coord (x,y);
-				if(Contains(otherCoord) && !coord.Equals(otherCoord)){
+				if(map.Contains(otherCoord) && !coord.Equals(otherCoord)){
 					neighbors.Add (GetCell(otherCoord));
 				}
 			}
@@ -85,12 +87,7 @@ public class CellsGrid : MonoBehaviour {
 		return neighbors;
 	}
 
-	public bool Contains(Coord coord){
-		if (coord.x < 0 || coord.y < 0 || coord.x >= map.size.x || coord.y >= map.size.y )
-			return false;
 
-		return true;
-	}
 
 	public GridMap GetMap(){
 		return map;
